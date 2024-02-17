@@ -1,73 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Borib</title>
-  <!-- Подключение Bootstrap CSS -->
-  <link href="static/bootstrap.min.css" rel="stylesheet">
-  <style>
-    /* Добавляем стили для темной темы */
-    body {
-      background-color: #343a40;
-      color: #fff;
-    }
-    .header {
-      background-color: #212529;
-      color: #fff;
-    }
-    .header .logo {
-      margin-right: auto;
-    }
-    .header .menu-item {
-      color: #fff;
-      padding: 0.5rem 1rem;
-      margin-right: 10px;
-      transition: opacity 0.3s ease;
-    }
-    .header .menu-item:hover {
-      text-decoration: none;
-      opacity: 0.8;
-    }
-    .footer {
-      background-color: #212529;
-      color: #fff;
-      padding: 20px 0;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-  </style>
-</head>
-<body>
-  <!-- Шапка (Header) -->
-  <header class="header p-4">
-    <div class="container d-flex align-items-center">
-      <h1 class="logo mr-auto">Borib</h1>
-      <nav class="ml-auto">
-        <a href="#" class="btn btn-outline-secondary menu-item ml-3">О проекте</a>
-        <a href="#" class="btn btn-outline-secondary menu-item ml-3">Зарегистрироваться</a>
-        <a href="#" class="btn btn-outline-secondary menu-item ml-3">Войти</a>
-      </nav>
-    </div>
-  </header>
+{% extends "main/base.html" %}
 
-  <!-- Основное содержимое страницы -->
-  <div class="container mt-5">
-    <h2>Привет, мир!</h2>
-    <p>Borib. Здесь будет основное содержимое страницы.</p>
-  </div>
+{% block title %}Главная страница{% endblock title %}
 
-  <!-- Подвал (Footer) -->
-  <footer class="footer text-center">
-    <div class="container">
-      <p>&copy; 2024 Borib. Все права защищены.</p>
-    </div>
-  </footer>
-
-  <!-- Подключение Bootstrap JS (необходимо для некоторых функций Bootstrap) -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% block body %}
+<!-- Основное содержимое страницы -->
+<div class="container mt-5">
+  <h2>Привет, мир!</h2>
+  <p>Borib. Здесь будет основное содержимое страницы.</p>
+</div>
+{% endblock body %}

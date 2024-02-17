@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock title %}</title>
+  <!-- Подключение Bootstrap CSS -->
+  <link href={% static "bootstrap.min.css" %} rel="stylesheet">
+  <style>
+    /* Добавляем стили для темной темы */
+    body {
+      background-color: #343a40;
+      color: #fff;
+    }
+    .header {
+      background-color: #212529;
+      color: #fff;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    .header .logo {
+      margin-right: auto;
+    }
+    .header .menu-item {
+      color: #fff;
+      padding: 0.5rem 1rem;
+      margin-right: 10px;
+      transition: opacity 0.3s ease;
+    }
+    .header .menu-item:hover {
+      text-decoration: none;
+      opacity: 0.8;
+    }
+    .footer {
+      background-color: #212529;
+      color: #fff;
+      padding: 20px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    
+    /* Добавляем стили для адаптивности кнопок на мобильных устройствах */
+    @media (max-width: 576px) {
+      .header .logo,
+      .header .menu-item {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Шапка (Header) -->
+  <header class="header">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4 text-left">
+          <h1 class="logo">Borib</h1>
+        </div>
+        <div class="col-md-8 text-right">
+          <nav>
+            <a href="#" class="btn btn-outline-secondary menu-item">О проекте</a>
+            <a href="#" class="btn btn-outline-secondary menu-item">Зарегистрироваться</a>
+            <a href="#" class="btn btn-outline-secondary menu-item">Войти</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {% block body %}{% endblock body %}
+
+  <!-- Подвал (Footer) -->
+  <footer class="footer text-center">
+    <div class="container">
+      <p>&copy; 2024 Borib. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <!-- Подключение Bootstrap JS (необходимо для некоторых функций Bootstrap) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
