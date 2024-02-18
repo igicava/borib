@@ -1,0 +1,33 @@
+{% extends "main/base.html" %}
+
+{% block title %}Регистрация{% endblock title %}
+
+{% block body %}
+<div class="container mt-5 mx-auto"> <!-- Добавлен класс mx-auto для центрирования -->
+  <h2>Регистрация</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="username">Имя пользователя:</label>
+      <input type="text" class="form-control" id="username" name="username">
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="email">Email адрес:</label>
+      <input type="email" class="form-control" id="email" name="email">
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="password1">Пароль:</label>
+      <input type="password" class="form-control" id="password1" name="password1">
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="password2">Подтверждение пароля:</label>
+      <input type="password" class="form-control" id="password2" name="password2">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+  </form>
+</div>
+{% endblock body %}

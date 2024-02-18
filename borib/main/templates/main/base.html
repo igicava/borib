@@ -12,6 +12,7 @@
     body {
       background-color: #343a40;
       color: #fff;
+      margin-bottom: 100px; /* Установка отступа внизу для учета высоты футера */
     }
     .header {
       background-color: #212529;
@@ -36,11 +37,10 @@
       background-color: #212529;
       color: #fff;
       padding: 20px 0;
-      position: fixed;
+      position: fixed; /* Фиксированная позиция */
       bottom: 0;
       width: 100%;
     }
-    
     /* Добавляем стили для адаптивности кнопок на мобильных устройствах */
     @media (max-width: 576px) {
       .header .logo,
@@ -64,8 +64,8 @@
         <div class="col-md-8 text-right">
           <nav>
             <a href="#" class="btn btn-outline-secondary menu-item">О проекте</a>
-            <a href="#" class="btn btn-outline-secondary menu-item">Зарегистрироваться</a>
-            <a href="#" class="btn btn-outline-secondary menu-item">Войти</a>
+            <a href="{% url "users:register" %}" class="btn btn-outline-secondary menu-item">Зарегистрироваться</a>
+            <a href="{% url "users:login" %}" class="btn btn-outline-secondary menu-item">Войти</a>
           </nav>
         </div>
       </div>
