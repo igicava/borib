@@ -5,19 +5,22 @@
 {% block body %}
 <div class="container mt-5 mx-auto"> <!-- Добавлен класс mx-auto для центрирования -->
   <h2>Авторизация</h2>
-  <form method="post">
+  <form action="{% url "users:login" %}" method="post">
     {% csrf_token %}
-    <div class="form-group">
-      <label for="username">Имя пользователя:</label>
-      <input type="text" class="form-control" id="username" name="username">
-    </div>
-    <br>
-    <div class="form-group">
-      <label for="password">Пароль:</label>
-      <input type="password" class="form-control" id="password" name="password">
-    </div>
-    <br>
-    <button type="submit" class="btn btn-primary">Войти</button>
+    {{ form.as_p }}
+    {% comment %}
+      <div class="form-group">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" class="form-control" id="username" name="username">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="password">Пароль:</label>
+        <input type="password" class="form-control" id="password" name="password">
+      </div>
+      <br>
+    {% endcomment %}
+    <button type="submit" class="btn btn-secondary">Войти</button>
   </form>
 </div>
 {% endblock body %}
