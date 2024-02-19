@@ -1,0 +1,31 @@
+{% extends "users/base.html" %}
+{% load static %}
+
+{% block title %}Профиль пользователя{% endblock title %}
+
+{% block body %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card bg-dark text-white mb-4">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            {% if user.img and user.img.url %}
+              <img src="{{ user.img.url }}" class="card-img-top" alt="Аватар пользователя">
+            {% else %}
+              <img src="{% static "unknown_user.jpg" %}" class="card-img-top" alt="Аватар пользователя">
+            {% endif %}
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+              <p class="card-text">Имя пользователя: {{ user.username }}</p>
+              <p class="card-text">Email: {{ user.email }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}

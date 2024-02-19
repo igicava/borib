@@ -7,19 +7,16 @@
   <h2>Авторизация</h2>
   <form action="{% url "users:login" %}" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    {% comment %}
       <div class="form-group">
-        <label for="username">Имя пользователя:</label>
-        <input type="text" class="form-control" id="username" name="username">
+        <label for="{{ form.username.id_for_label }}">Имя пользователя:</label>
+        {{ form.username }}
       </div>
       <br>
       <div class="form-group">
-        <label for="password">Пароль:</label>
-        <input type="password" class="form-control" id="password" name="password">
+        <label for="{{ form.password.id_for_label }}">Пароль:</label>
+        {{ form.password }}
       </div>
       <br>
-    {% endcomment %}
     <button type="submit" class="btn btn-secondary">Войти</button>
   </form>
 </div>

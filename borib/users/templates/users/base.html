@@ -55,17 +55,15 @@
 </head>
 <body>
   <!-- Шапка (Header) -->
-  <header class="header p-4">
-    <div class="container d-flex align-items-center justify-content-between"> <!-- Используем justify-content-between для кнопок -->
-      <h1 class="logo">Borib</h1>
-      <nav>
-        <a href="{% url "users:login" %}" class="btn btn-outline-secondary menu-item ml-3">Войти</a>
-        <a href="{% url "users:register" %}" class="btn btn-outline-secondary menu-item ml-3">Зарегистрироваться</a>
-        <a href="#" class="btn btn-outline-secondary menu-item ml-3">О проекте</a>
-      </nav>
+  <header class="header">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4 text-left">
+          <h1 class="logo">Borib</h1>
+        </div>
+      </div>
     </div>
   </header>
-  
 
   {% block body %}{% endblock body %}
 

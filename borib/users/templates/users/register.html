@@ -5,26 +5,40 @@
 {% block body %}
 <div class="container mt-5 mx-auto"> <!-- Добавлен класс mx-auto для центрирования -->
   <h2>Регистрация</h2>
-  <form method="post">
+  <form action="{% url "users:register" %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
-      <label for="username">Имя пользователя:</label>
-      <input type="text" class="form-control" id="username" name="username">
+      <label for="{{ form.first_name.id_for_label }}">Имя:</label>
+      {{ form.first_name }}
     </div>
     <br>
     <div class="form-group">
-      <label for="email">Email адрес:</label>
-      <input type="email" class="form-control" id="email" name="email">
+      <label for="{{ form.last_name.id_for_label }}">Фамилия:</label>
+      {{ form.last_name }}
     </div>
     <br>
     <div class="form-group">
-      <label for="password1">Пароль:</label>
-      <input type="password" class="form-control" id="password1" name="password1">
+      <label for="{{ form.username.id_for_label }}">Имя пользователя:</label>
+      {{ form.username }}
     </div>
     <br>
     <div class="form-group">
-      <label for="password2">Подтверждение пароля:</label>
-      <input type="password" class="form-control" id="password2" name="password2">
+      <label for="{{ form.email.id_for_label }}">Email адрес:</label>
+      {{ form.email }}
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="{{ form.password1.id_for_label }}">Пароль:</label>
+      {{ form.password1 }}
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="{{ form.password2.id_for_label }}">Подтверждение пароля:</label>
+      {{ form.password2 }}
+    </div>
+    <br>
+    <div class="form-group">
+      {{ form.img }}
     </div>
     <br>
     <button type="submit" class="btn btn-secondary">Зарегистрироваться</button>
