@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django import forms
 
 from users.models import User
@@ -58,3 +58,16 @@ class UserRegistrationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+    
+class UserProfileForm(forms.ModelForm):
+    first_name = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+    }))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+    }))
+    img = forms.ImageField(label='Выберите новый аватар', required=False)
+    
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'img']

@@ -1,0 +1,29 @@
+{% extends "users/base.html" %}
+
+{% block title %}Изменение профиля{% endblock title %}
+
+{% block body %}
+<div class="container mt-5">
+  <h2>Изменение профиля</h2>
+  <form action="{% url "users:profile_edit" %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="{{ form.first_name.id_for_label }}">Имя:</label>
+        <input type="text" class="form-control" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.name }}" value="{{ form.first_name.value }}">
+      </div>
+      <br>
+    <div class="form-group">
+        <label for="{{ form.last_name.id_for_label }}">Фамилия:</label>
+        <input type="text" class="form-control" id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.name }}" value="{{ form.last_name.value }}">
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="{{ form.img.id_for_label }}">Аватар:</label>
+        <br>
+        <input type="file" class="form-control-file" id="{{ form.img.id_for_label }}" name="{{ form.img.name }}">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-secondary">Сохранить изменения</button>
+  </form>
+</div>
+{% endblock body %}

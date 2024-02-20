@@ -4,6 +4,23 @@
 {% block title %}Профиль пользователя{% endblock title %}
 
 {% block body %}
+<style>
+  .card-img-top {
+    width: 100%; /* Ширина изображения */
+    height: 100%; /* Высота изображения */
+    object-fit: cover; /* Обрезка изображения до размеров контейнера */
+    object-position: center; /* Позиция изображения по центру контейнера */
+  }
+  .btn-edit-profile {
+    background-color: #343a40; /* Цвет кнопки */
+    width: 100%; /* Ширина кнопки */
+    border-radius: 0; /* Удаление скругления углов */
+  }
+  
+  .btn-edit-profile:hover {
+    background-color: #495057; /* Цвет кнопки при наведении */
+  }    
+</style>
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -21,6 +38,11 @@
               <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
               <p class="card-text">Имя пользователя: {{ user.username }}</p>
               <p class="card-text">Email: {{ user.email }}</p>
+              <div class="row mt-3">
+              <div class="col-md-12 text-right">
+                <a href="{% url 'users:profile_edit' %}" class="btn btn-secondary btn-edit-profile">Редактировать</a>
+              </div>
+              </div>
             </div>
           </div>
         </div>
