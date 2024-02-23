@@ -1,23 +1,44 @@
-{% extends "main/base.html" %}
+{% extends "users/base.html" %}
 
 {% block title %}Авторизация{% endblock title %}
 
 {% block body %}
-<div class="container mt-5 mx-auto"> <!-- Добавлен класс mx-auto для центрирования -->
-  <h2>Авторизация</h2>
-  <form action="{% url "users:login" %}" method="post">
-    {% csrf_token %}
-      <div class="form-group">
-        <label for="{{ form.username.id_for_label }}">Имя пользователя:</label>
-        {{ form.username }}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card bg-dark">
+        <div class="card-body">
+          <h2 class="card-title">Авторизация</h2>
+          <form action="{% url "users:login" %}" method="post">
+            {% csrf_token %}
+              {% if messages or form.non_field_errors %}
+                {% if messages %}
+                  {% for message in messages %}
+                    <div class="alert alert-success" role="alert">
+                      {{ message }}
+                    </div>
+                  {% endfor %}
+                {% else %}
+                  <div class="alert alert-danger" role="alert">
+                    {{ form.non_field_errors }}
+                  </div>
+                {% endif %}
+              {% endif %}
+              <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Имя пользователя:</label>
+                {{ form.username }}
+              </div>
+              <br>
+              <div class="form-group">
+                <label for="{{ form.password.id_for_label }}">Пароль:</label>
+                {{ form.password }}
+              </div>
+              <br>
+            <button type="submit" class="btn btn-secondary">Войти</button>
+          </form>
+        </div>
       </div>
-      <br>
-      <div class="form-group">
-        <label for="{{ form.password.id_for_label }}">Пароль:</label>
-        {{ form.password }}
-      </div>
-      <br>
-    <button type="submit" class="btn btn-secondary">Войти</button>
-  </form>
+    </div>
+  </div>
 </div>
 {% endblock body %}

@@ -1,47 +1,66 @@
-{% extends "main/base.html" %}
+{% extends "users/base.html" %}
 
 {% block title %}Регистрация{% endblock title %}
 
 {% block body %}
-<div class="container mt-5 mx-auto"> <!-- Добавлен класс mx-auto для центрирования -->
-  <h2>Регистрация</h2>
-  <form action="{% url "users:register" %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="form-group">
-      <label for="{{ form.first_name.id_for_label }}">Имя:</label>
-      {{ form.first_name }}
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card bg-dark text-white">
+        <div class="card-body">
+          <h2 class="card-title">Регистрация</h2>
+          <form action="{% url 'users:register' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if form.errors %}
+              <div class="alert alert-danger" role="alert">
+                {% for field, errors in form.errors.items %}
+                  {% for error in errors %}
+                    {{ field|title }}: {{ error }}
+                  {% endfor %}
+                {% endfor %}
+              </div>
+            {% endif %}
+            <div class="form-group">
+              <label for="{{ form.first_name.id_for_label }}">Имя:</label>
+              {{ form.first_name }}
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="{{ form.last_name.id_for_label }}">Фамилия:</label>
+              {{ form.last_name }}
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="{{ form.username.id_for_label }}">Имя пользователя:</label>
+              {{ form.username }}
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="{{ form.email.id_for_label }}">Email адрес:</label>
+              {{ form.email }}
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="{{ form.password1.id_for_label }}">Пароль:</label>
+              {{ form.password1 }}
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="{{ form.password2.id_for_label }}">Подтверждение пароля:</label>
+              {{ form.password2 }}
+            </div>
+            <br>
+            <div class="form-group">
+              <label>Аватар:</label>
+              <br>
+              {{ form.img }}
+            </div>
+            <br>
+            <button type="submit" class="btn btn-secondary">Зарегистрироваться</button>
+          </form>
+        </div>
+      </div>
     </div>
-    <br>
-    <div class="form-group">
-      <label for="{{ form.last_name.id_for_label }}">Фамилия:</label>
-      {{ form.last_name }}
-    </div>
-    <br>
-    <div class="form-group">
-      <label for="{{ form.username.id_for_label }}">Имя пользователя:</label>
-      {{ form.username }}
-    </div>
-    <br>
-    <div class="form-group">
-      <label for="{{ form.email.id_for_label }}">Email адрес:</label>
-      {{ form.email }}
-    </div>
-    <br>
-    <div class="form-group">
-      <label for="{{ form.password1.id_for_label }}">Пароль:</label>
-      {{ form.password1 }}
-    </div>
-    <br>
-    <div class="form-group">
-      <label for="{{ form.password2.id_for_label }}">Подтверждение пароля:</label>
-      {{ form.password2 }}
-    </div>
-    <br>
-    <div class="form-group">
-      {{ form.img }}
-    </div>
-    <br>
-    <button type="submit" class="btn btn-secondary">Зарегистрироваться</button>
-  </form>
+  </div>
 </div>
 {% endblock body %}
