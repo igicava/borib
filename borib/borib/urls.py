@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name="index"),
     path('users/', include('users.urls', namespace='users')),
+    path('messenger/', include('messenger.urls', namespace='messenger')),
 ]
 
 if settings.DEBUG:
