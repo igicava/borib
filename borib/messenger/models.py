@@ -10,7 +10,7 @@ class Message(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"From: {self.sender.username}, To: {self.recipient.username}, Text: {self.text}, Files: {self.file.url}"
+        return f"From: {self.sender.username}, To: {self.recipient.username}, Text: {self.text}"
     
     def save(self, *args, **kwargs):
         if not self.pk:

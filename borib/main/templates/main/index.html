@@ -14,8 +14,8 @@
         <img src="{{ post.img.url }}" class="card-img-top" alt="Изображение">
         {% endif %}
         <div class="card-body">
-          <h2 class="card-title">{{ post.title }}</h2>
-          <p class="card-text">{{ post.text }}</p>
+          <h1 class="card-title">{{ post.title }}</h1>
+          <pre class="card-text" style="white-space:pre-wrap;font-family:Calibri;font-size:112%"><p class="card-text">{{ post.text }}</p></pre>
         </div>
         <div class="card-footer text-muted">
           {{ post.date }}

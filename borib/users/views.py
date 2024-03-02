@@ -3,6 +3,7 @@ from users.models import User
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 from django.contrib import auth, messages
 from django.urls import reverse
+from messenger.models import Contact
 
 def login(request):
     if request.method == 'POST':
@@ -35,7 +36,8 @@ def register(request):
 
 def profile(request):
     context = {
-        'user': request.user
+        'user': request.user,
+        'contacts': Contact.objects.filter(user=request.user)
     }
     return render(request, 'users/profile.html', context)
 

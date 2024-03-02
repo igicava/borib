@@ -1,0 +1,68 @@
+{% extends "messenger/base.html" %}
+
+{% block title %}{{ contact }}{% endblock title %}
+
+{% block body %}
+<style>
+  .card-img-top {
+    width: 100%; /* Ширина изображения */
+    height: 100%; /* Высота изображения */
+    object-fit: cover; /* Обрезка изображения до размеров контейнера */
+    object-position: center; /* Позиция изображения по центру контейнера */
+  }
+  .btn-edit-profile {
+    background-color: #343a40; /* Цвет кнопки */
+    width: 100%; /* Ширина кнопки */
+    border-radius: 0; /* Удаление скругления углов */
+  }
+  
+  .btn-edit-profile:hover {
+    background-color: #495057; /* Цвет кнопки при наведении */
+  }    
+  .bg {
+    background-color: #343a40;
+  }
+</style>
+<div class="row justify-content-center mb-5 mt-5 px-5">
+  <div class="col-md-4 mb-3 mt-3">
+    <div class="card bg-dark text-white">
+        <div class="card-body">
+            <form action="{% url 'messenger:send' contact %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="message" class="text-white">Введите сообщение:</label>
+                    <br><br>
+                    <textarea style="background-color:black;" class="form-control text-white" id="text" name="text" rows="10"></textarea>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-secondary btn-edit-profile">Отправить</button>
+            </form>
+        </div>
+    </div>
+  </div>
+    <div class="col-md-8">
+        <div class="card bg-dark text-white">
+            <div class="card-body">
+                <ul class="list-group">
+                    {% if messages|length > 0 %}
+                        {% for i in messages %}
+                            <h4 class="text-white">{{ i.sender }}</h4>
+                            <p class="text-white">{{ i.text }}</p>
+                            <div class="text-muted">
+                                {{ i.timestamp }}
+                            </div>
+                            <hr>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-white">Сообщений пока нет.</p>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  const cardBody = document.querySelector('.card-body');
+  cardBody.scrollTop = cardBody.scrollHeight;
+</script>
+{% endblock body %}

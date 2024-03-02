@@ -4,6 +4,7 @@ from messenger import views
 app_name = 'messenger'
 
 urlpatterns = [
-    path('send/', views.send),
-    path('add_contact/', views.add_contact)
+    path('add_contact/', views.add_contact, name='add_contact'),
+    path('chat/<str:recipient>/', views.chat, name='chat'),
+    path('send/<str:recipienter>/', views.send, name='send'),
 ]

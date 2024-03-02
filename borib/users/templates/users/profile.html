@@ -20,7 +20,11 @@
   .btn-edit-profile:hover {
     background-color: #495057; /* Цвет кнопки при наведении */
   }    
+  .bg {
+    background-color: #343a40;
+  }
 </style>
+
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -39,15 +43,54 @@
               <p class="card-text">Имя пользователя: {{ user.username }}</p>
               <p class="card-text">Email: {{ user.email }}</p>
               <div class="row mt-3">
-              <div class="col-md-12 text-right">
-                <a href="{% url 'users:profile_edit' %}" class="btn btn-secondary btn-edit-profile">Редактировать</a>
-                <br>
-                <br>
-                <a href="{% url 'users:logout' %}" class="btn btn-secondary btn-edit-profile">Выйти</a>
-              </div>
+                <div class="col-md-12 text-right">
+                  <a href="{% url 'users:profile_edit' %}" class="btn btn-secondary btn-edit-profile">Редактировать</a>
+                  <br>
+                  <br>
+                  <a href="{% url 'users:logout' %}" class="btn btn-secondary btn-edit-profile">Выйти</a>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Добавить-->
+  <div class="row justify-content-center mb-5">
+    <div class="col-md-8">
+      <div class="card bg-dark text-white">
+        <div class="card-body">
+          <h5 class="card-title">Добавить контакт</h5>
+          <ul class="list-group">
+            <form action="{% url "messenger:add_contact" %}" method="post">
+              {% csrf_token %}
+                <div class="form-group">
+                  <input style="background-color:black" name="username" id="username" type="username" class="form-control text-white" placeholder="Введите имя пользователя которого хотите добавить в контакты.">
+                </div>
+                <br>
+              <button type="submit" class="btn btn-secondary btn-edit-profile">Добавить</button>
+            </form>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Блок с контактами -->
+  <div class="row justify-content-center mb-5">
+    <div class="col-md-8">
+      <div class="card bg-dark text-white">
+        <div class="card-body">
+          <h5 class="card-title">Контакты</h5>
+          <ul class="list-group">
+            {% if contacts|length > 0 %}
+              {% for contact in contacts %}
+                <li class="bg text-white list-group-item"><a style="text-decoration: none;" class="text-white" href="/messenger/chat/{{ contact.contact.username }}/">{{ contact.contact.username }}</a></li>
+              {% endfor %}
+            {% else %}
+              <li class="text-white list-group-item bg">Контактов ещё нет...</li>
+            {% endif %}
+          </ul>
         </div>
       </div>
     </div>
