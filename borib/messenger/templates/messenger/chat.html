@@ -27,16 +27,20 @@
   <div class="col-md-4 mb-3 mt-3">
     <div class="card bg-dark text-white">
         <div class="card-body">
-            <form action="{% url 'messenger:send' contact %}" method="post">
+            <form action="{% url 'messenger:send' contact %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="message" class="text-white">Введите сообщение:</label>
                     <br><br>
                     <textarea style="background-color:black;" class="form-control text-white" id="text" name="text" rows="10"></textarea>
-                </div>
+                    <br>
+                    <input type="file" class="form-control" id="file" name="file">
+                  </div>
                 <br>
                 <button type="submit" class="btn btn-secondary btn-edit-profile">Отправить</button>
             </form>
+            <br>
+            <a class="btn btn-secondary btn-edit-profile" href="{% url "users:profile" %}">Перейти в профиль</a>
         </div>
     </div>
   </div>
@@ -48,6 +52,9 @@
                         {% for i in messages %}
                             <h4 class="text-white">{{ i.sender }}</h4>
                             <p class="text-white">{{ i.text }}</p>
+                            {% if i.file %}
+                                <a href="/messenger/download/?file_name={{ i.file.name }}&sender={{ contact }}&sender1={{ request.user.username }}" class="text-white" download>Скачать файл</a>
+                            {% endif %}
                             <div class="text-muted">
                                 {{ i.timestamp }}
                             </div>

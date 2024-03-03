@@ -4,15 +4,23 @@ from users.models import User
 from django.db.models import Q
 from users import models
 from django.urls import reverse
+import os
+from django.conf import settings
 
 def send(request, recipienter):
     if request.method == 'POST':
-        text = request.POST['text']
+        text = request.POST.get('text', '')
+        file = request.FILES.get('file')  # Получаем файл из запроса
         sender = request.user
         recipients = User.objects.filter(username=recipienter).first()
-        msg = Message(text=text, sender=sender, recipient=recipients)
+        
+        if file is not None:
+            msg = Message(text=text, file=file, sender=sender, recipient=recipients)
+        else:
+            msg = Message(text=text, sender=sender, recipient=recipients)
+        
         msg.save()
-        return HttpResponseRedirect(f'/messenger/chat/{recipienter}/')
+        return HttpResponseRedirect(reverse('messenger:chat', args=[recipienter]))
     else:
         return HttpResponseRedirect(reverse('users:profile'))
 
@@ -66,3 +74,22 @@ def chat(request, recipient):
             return HttpResponse("Chat undefined")
     else:
         return HttpResponse("Please authenticated")
+    
+def download_file(request):
+    sender = request.GET.get('sender')
+    sender1 = request.GET.get('sender1')
+    file_name = request.GET.get('file_name')
+    user0 = User.objects.filter(username=sender).first()
+    user1 = User.objects.filter(username=sender1).first()
+    
+    if request.user.is_authenticated and (Contact.objects.filter(Q(user=user0, contact=user1) | Q(user=user1, contact=user0)).exists()):
+        file_path = os.path.join(settings.MEDIA_ROOT, file_name)
+        if os.path.exists(file_path):
+            with open(file_path, 'rb') as file:
+                response = HttpResponse(file.read(), content_type='application/octet-stream')
+                response['Content-Disposition'] = 'attachment; filename=' + file_name
+                return response
+        else:
+            return HttpResponse("Файл не найден", status=404)
+    else:
+        return HttpResponse("У вас нет доступа к этому файлу", status=403)
