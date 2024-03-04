@@ -61,12 +61,10 @@
       <h1 class="logo">Borib</h1>
       <nav>
         {% if request.user.is_authenticated %}
-        <a href="#" class="btn btn-outline-secondary menu-item ml-3">О проекте</a>
         <a href="{% url "users:profile" %}" class="btn btn-outline-secondary menu-item ml-3">Профиль</a>
         {% else %}
         <a href="{% url "users:login" %}" class="btn btn-outline-secondary menu-item ml-3">Войти</a>
         <a href="{% url "users:register" %}" class="btn btn-outline-secondary menu-item ml-3">Зарегистрироваться</a>
-        <a href="#" class="btn btn-outline-secondary menu-item ml-3">О проекте</a>
         {% endif %}
       </nav>
     </div>

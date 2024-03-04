@@ -81,15 +81,18 @@ def download_file(request):
     file_name = request.GET.get('file_name')
     user0 = User.objects.filter(username=sender).first()
     user1 = User.objects.filter(username=sender1).first()
-    
-    if request.user.is_authenticated and (Contact.objects.filter(Q(user=user0, contact=user1) | Q(user=user1, contact=user0)).exists()):
-        file_path = os.path.join(settings.MEDIA_ROOT, file_name)
-        if os.path.exists(file_path):
-            with open(file_path, 'rb') as file:
-                response = HttpResponse(file.read(), content_type='application/octet-stream')
-                response['Content-Disposition'] = 'attachment; filename=' + file_name
-                return response
+    if request.user.username == user0.username or request.user.username == user1.username:
+        if request.user.is_authenticated and (Contact.objects.filter(Q(user=user0, contact=user1) | Q(user=user1, contact=user0)).exists()):
+            file_path = os.path.join(settings.MEDIA_ROOT, file_name)
+            if os.path.exists(file_path):
+                with open(file_path, 'rb') as file:
+                    response = HttpResponse(file.read(), content_type='application/octet-stream')
+                    file_name = os.path.basename(file_path)
+                    response['Content-Disposition'] = f'attachment; filename="{file_name}"'
+                    return response
+            else:
+                return HttpResponse("Файл не найден", status=404)
         else:
-            return HttpResponse("Файл не найден", status=404)
+            return HttpResponse("У вас нет доступа к этому файлу", status=403)
     else:
         return HttpResponse("У вас нет доступа к этому файлу", status=403)

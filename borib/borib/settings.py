@@ -11,10 +11,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_#wx*alqu0wz#gqf6v*vvnmmf*kvsng1p2xjw9$e%lqmr9e#&q309uj9d0posnhvbaoibu84wy97092po;lwo[p[poppo{PJOHGYFIYIUU)980&0(&)&)*hi}]]'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['borib-alexanderurchencoru.amvera.io', '127.0.0.1']
 
 # Application definition
 
