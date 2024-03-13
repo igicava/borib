@@ -13,17 +13,18 @@
 ## Требования
 
 - Python 3.x
-- Django 3.x
+- Django 5.0
 - Дополнительные зависимости указаны в файле `requirements.txt`
 
 ## Установка
 
 1. Клонируйте репозиторий:
    
-   git clone https://github.com/your_username/borib.git
+   git clone https://github.com/AlexanderUrchencoRu/borib.git
+
 2. Перейдите в корневую папку:
 
-  cd borib
+   cd borib
 
 3. Установите зависимости:
 
