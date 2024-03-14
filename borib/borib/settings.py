@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_#wx*alqu0wz#gqf6v*vvnmmf*kvsng1p2xjw9$e%lqmr9e#&q309uj9d0posnhvbaoibu84wy97092po;lwo[p[poppo{PJOHGYFIYIUU)980&0(&)&)*hi}]]'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['borib-alexanderurchencoru.amvera.io', '127.0.0.1', '0.0.0.0']
 
@@ -69,7 +69,7 @@ WSGI_APPLICATION = 'borib.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/data/db.sqlite3',
+        'NAME': '/data/db.sqlite3', # Измените если вам нужен другой путь
     }
 }
 
@@ -111,10 +111,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = []
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-STATIC_ROOT = BASE_DIR / 'static/'
+STATIC_ROOT = BASE_DIR / 'static/' # Измените если вам нужен другой путь
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/data/media'
+MEDIA_ROOT = '/data/media' # Измените если вам нужен другой путь
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

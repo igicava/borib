@@ -32,7 +32,7 @@ def add_contact(request):
             return HttpResponseRedirect(reverse('users:profile'))
         contact_user = User.objects.filter(username=contact_name).first()
         if contact_user == None:
-            return HttpResponse("<h1>Пользователя с таким именем не существует</h1>")
+            return HttpResponseRedirect(reverse('users:profile'))
         contact = Contact(user=user, contact=contact_user)
         contacts = Contact.objects.filter(user=user)
         for i in contacts:
