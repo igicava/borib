@@ -20,7 +20,7 @@
 
 1. Клонируйте репозиторий:
    
-   git clone https://github.com/AlexanderUrchencoRu/borib.git
+   git clone https://github.com/igicava/borib.git
 
 2. Перейдите в корневую папку:
 
